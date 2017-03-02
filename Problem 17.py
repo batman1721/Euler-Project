@@ -11,119 +11,73 @@
 #(one hundred and fifteen) contains 20 letters.
 #The use of "and" when writing out numbers is in compliance with British usage.
 
+#Números entre 1 e 9
+def numb9(x):
+    if x==2 or x==6 or x==1:
+        return 3
+    elif x==3 or x==8 or x==7:
+        return 5
+    elif x==9 or x==4 or x==5:
+        return 4
+    elif x==0:
+        return 0
+def numb99(x):
+    if x==2 or x==3 or x==8 or x==9:
+        return 6
+    elif x==5 or x==6 or x==4:
+        return 5
+    elif x==7:
+        return 7
+    elif x==0:
+        return 0
+
+def numb19(x):
+    if x==10:
+        return 3
+    elif x==11 or x==12:
+        return 6
+    elif x==14 or x==13 or x==18 or x==19:
+        return 8
+    elif x==15 or x==16:
+        return 7
+    elif x==17:
+        return 9
+
 count=0
 
 for number in xrange(1,1001):
 
-#Números entre 20 e 99
-    if number<100 and number>19:
-        i=number
-        i=int(i/10)
-    
-        if i==2 or i==3 or i==8 or i==9:
-            count=count+6
-        elif i==5 or i==6 or i==4:
-            count=count+5
-        elif i==7:
-            count=count+7
-    
-        j=(number-(i*10))
-    
-        if j==1 or j==2 or j==6:
-            count=count+3
-        elif j==3 or j==7 or j==8:
-            count=count+5
-        elif j==4 or j==5 or j==9:
-            count=count+4
-        print number
-        print count
-#Números entre 100 e 999
-    elif (number>=100 and number<110) or (number>119 and number<210) or (number>219 and number<310) or (number>319 and number<410) or (number>419 and number<510) or (number>519 and number<610) or (number>619 and number<710) or (number>719 and number<810) or (number>819 and number<910) or (number>919 and number<1000):
-        k=number
-        k=int(k/100)
-        
-        if k==2  or k==6 or k==1:
-            count=count+3+7+3
-        elif k==5 or k==9 or k==4:
-            count=count+4+7+3
-        elif k==7 or k==8 or k==3:
-            count=count+5+7+3
-        
-        i=(number-(k*100))
-        i=int(i/10)
-
-        if i==2 or i==3 or i==8 or i==9:
-            count=count+6
-        elif i==5 or i==6 or i==4:
-            count=count+5
-        elif i==7:
-            count=count+7
-            
-        j=(number-(k*100)-(i*10))
-
-        if j==1 or j==2 or j==6:
-            count=count+3
-        elif j==3 or j==7 or j==8:
-            count=count+5
-        elif j==4 or j==5 or j==9:
-            count=count+4
-        print number
-        print count
 #Números entre 1 e 9
-    elif number <10:
-        i=number
-        if i==2 or i==6 or i==1:
-            count=count+3
-        elif i==3 or i==8 or i==7:
-            count=count+5
-        elif i==9 or i==4 or i==5:
-            count=count+4
-        print number
-        print count
-#Números entre 10 e 19
-    elif number>9 and number<20:
-        i=number
-
-        if i==10:
-            count=count+3
-        elif i==11 or i==12:
-            count=count+6
-        elif i==14 or i==13 or i==18 or i==19:
-            count=count+8
-        elif i==15 or i==16:
-            count=count+7
-        elif i==17:
-            count=count+9
-        print number
-        print count    
-#Números entre 111 e 119
-    elif (number>=110 and number<=119) or (number>=310 and number<=319) or (number>=410 and number<=419) or (number>=510 and number<=519) or (number>=610 and number<=619) or (number>=710 and number<=719) or (number>=810 and number<=819) or (number>=210 and number<=219) or (number>=910 and number<=919):
-        i=number
-        i=int(i/100)
-        
-        if i==2  or i==6 or i==1:
-            count=count+3+7
-        elif i==5 or i==9 or i==4:
-            count=count+4+7
-        elif i==7 or i==8 or i==3:
-            count=count+5+7   
-
-        j=(number-(i*100))
-        if j==10:
-            count=count+3
-        elif j==11 or j==12:
-            count=count+6
-        elif j==14 or j==13 or j==18 or j==19:
-            count=count+8
-        elif j==15 or j==16:
-            count=count+7
-        elif j==17:
-            count=count+9
-        print number
-        print count
+    if number<10:
+        count=count+numb9(number)
 #Número 1000
     elif number==1000:
         count=count+8+3
+
+#Números entre 10 e 19
+    elif number>9 and number<20:
+        count=count+numb19(number)
+
+#Números entre 20 e 99
+    elif number<100 and number>19:
+        i=int(number/10)
+        count=count+numb99(i)
+        j=(number-(i*10))
+        count=count+numb9(j)
+
+
+#Números entre 100 e 999
+    elif (number>=100 and number<=999):
         print number
-        print count
+        k=int(number/100)
+        count=count+numb9(k)+7
+        
+        i=(number-(k*100))
+        if i>9 and i<20:
+            count=count+numb19(i)+3
+        else:
+            count=count+numb99(i)+3            
+        j=(number-(k*100)-(i*10))
+        count=count+numb9(j)
+
 print count
