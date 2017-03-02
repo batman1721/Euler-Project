@@ -23,5 +23,3 @@ for i in xrange(100,999):
                 ii=i                            #
                 jj=j                            #
 print n
-print ii
-print jj
